@@ -11,17 +11,18 @@ const HomePage = () => {
                 <img 
                     src={duckLogo} 
                     alt="duck logo" 
-                    className="h-60 w-60 transition-transform duration-300 hover:scale-125 relative -top-5" />
+                    className="h-80 w-80 transition-transform duration-300 hover:scale-125 relative -top-5" />
 
                 <button 
                     className='
-                        bg-amber-400 text-white px-6 py-3
-                        rounded-lg shadow-md
-                        hover:bg-amber-500 hover:shadow-lg
+                        bg-amber-400 text-white px-10 py-5
+                        rounded-4xl shadow-md
+                        hover:bg-amber-450 hover:shadow-lg
                         transition-transform transform hover:scale-105
-                        duration-300
+                        duration-300 mt-12  
                         '
-                >LOGIN
+                >
+                    <h1 className='font-bold text-2xl'>LOGIN</h1>
                 </button>
 
                 <h1 className='font-sans'>Or Signup Here</h1>

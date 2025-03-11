@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import duckLogo from '../assets/YapYapLogo_notext.png';
+import duckLogo from '../../public/YapYapLogo_notext.png'
 
 const HomePage = () => {
   return (

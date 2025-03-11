@@ -2,9 +2,9 @@ const LoginForm = ({onSubmit, email, setEmail, password, setPassword}) => {
     return(
         <form
             onSubmit={onSubmit}
-            className="absolute right-10 mt-4 p-6 w-[320px] z-50"
+            className="mt-4 p-6 w-[320px] z-50"
         >
-            <h2 className='text-xl font-bold mb-4'>Login</h2>
+            <h2 className='text-xl font-bold mb-4 text-center'>Sign In To Your Account</h2>
 
             {/* Email/Username Field */}
             <input
@@ -38,7 +38,9 @@ const LoginForm = ({onSubmit, email, setEmail, password, setPassword}) => {
                     hover:bg-amber-500 transition duration-300
                 "
             >
-                Sign In
+                <h1 className="font-bold text-xl">
+                    Start Yapping!
+                </h1>
             </button>
         </form>
     )

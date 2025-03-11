@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import duckLogo from '../assets/YapYapLogo_notext.png'
 import LogoCenter from '../components/LogoCenter'
 import LoginForm from '../components/LoginForm'
-import LoginSection from '../components/LoginSection'
+import LoginButton from '../components/LoginButton'
 
 const HomePage = () => {
     const [showForm, setShowForm] = useState(false)
@@ -17,7 +17,9 @@ const HomePage = () => {
 
     return (
     <>
-    <Navbar />
+        {/* Navigation Bar */}
+        <Navbar />
+
         <div className="container mx-auto p-4">
             <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] px-8 space-y-6">
 
@@ -25,21 +27,27 @@ const HomePage = () => {
                 <LogoCenter src={duckLogo} alt={"duckLogo"} />
 
                 {/* Login Button + Signup Message */}
-                <LoginSection onLoginClick={() => setShowForm(!showForm)} />
+                {showForm ? (
+                    <LoginForm
+                        onSubmit={handleSubmit}
+                        email={email}
+                        setEmail={setEmail}
+                        password={password}
+                        setPassword={setPassword}
+                    />
+                ) : (
+                    <LoginButton 
+                            text="LOGIN" 
+                            onClick={() => setShowForm(true)} 
+                            className="bg-amber-400 text-white hover:bg-amber-500 mt-12"
+                    />
+                )}
 
+                {/* Signup Message */}
+                <h1 className="font-sans mt-4">Or Signup Here!</h1>
             </div>
         </div>
 
-        {/* Login Form */}
-        {showForm && (
-            <LoginForm
-                onSubmit={handleSubmit}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-            />
-        )}
     </>
   )
 }

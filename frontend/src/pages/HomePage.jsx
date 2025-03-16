@@ -4,6 +4,7 @@ import duckLogo from '../assets/YapYapLogo_notext.png'
 import LogoCenter from '../components/LogoCenter'
 import LoginForm from '../components/LoginForm'
 import LoginButton from '../components/LoginButton'
+import SignupButton from '../components/SignupButton'
 
 const HomePage = () => {
     const [showForm, setShowForm] = useState(false)
@@ -44,7 +45,11 @@ const HomePage = () => {
                 )}
 
                 {/* Signup Message */}
-                <h1 className="font-sans mt-4">Or Signup Here!</h1>
+                <h1>Don't have an account?</h1>
+                <SignupButton
+                    text="SIGNuP"
+                    onClick={() => setShowForm(true)}
+                />
             </div>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import duckLogo from '../assets/YapYapLogo_notext.png'
 import LogoCenter from '../components/LogoCenter'
@@ -7,6 +8,8 @@ import LoginButton from '../components/LoginButton'
 import SignupButton from '../components/SignupButton'
 
 const HomePage = () => {
+    const navigate = useNavigate()
+
     const [showForm, setShowForm] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -47,8 +50,8 @@ const HomePage = () => {
                 {/* Signup Message */}
                 <h1>Don't have an account?</h1>
                 <SignupButton
-                    text="SIGNuP"
-                    onClick={() => setShowForm(true)}
+                    text="SignUp"
+                    onClick={() => navigate('/signup')}
                 />
             </div>
         </div>

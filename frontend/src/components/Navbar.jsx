@@ -9,7 +9,7 @@ const Navbar = () => {
                 
                 {/* LOGO */}
                 <div className="flex">
-                    <img src={duckLogo} alt="duck logo" className="h-12 w-12 mr-2"></img>
+                    <img src="/YapYapLogo.svg" alt="duck logo" className="h-12 w-12 mr-2"></img>
                 </div>
                 
                 {/* NAME */}

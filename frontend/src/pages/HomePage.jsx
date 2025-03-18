@@ -28,7 +28,7 @@ const HomePage = () => {
             <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] px-8 space-y-6">
 
                 {/* LOGO in Center with Transition */}
-                <LogoCenter src={duckLogo} alt={"duckLogo"} />
+                <LogoCenter src="/YapYapLogo.svg" alt={"duckLogo"} />
 
                 {/* Login Button + Signup Message */}
                 {showForm ? (

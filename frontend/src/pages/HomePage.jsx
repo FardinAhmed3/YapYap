@@ -22,7 +22,10 @@ const HomePage = () => {
     return (
     <>
         {/* Navigation Bar */}
-        <Navbar />
+        <div>
+            <Navbar />
+        </div>
+        
 
         <div className="container mx-auto p-4">
             <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] px-8 space-y-6">
@@ -46,13 +49,15 @@ const HomePage = () => {
                             className="bg-amber-400 text-white hover:bg-amber-500 mt-12"
                     />
                 )}
-
-                {/* Signup Message */}
-                <h1>Don't have an account?</h1>
-                <SignupButton
-                    text="SignUp"
-                    onClick={() => navigate('/signup')}
-                />
+                <div className='flex flex-row items-center justify-center space-x-2'> 
+                    {/* Signup Message */}
+                    <h1>Don't have an account?</h1>
+                    <SignupButton
+                        text="SignUp"
+                        onClick={() => navigate('/signup')}
+                    />
+                </div>
+                
             </div>
         </div>
 

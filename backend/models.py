@@ -4,8 +4,8 @@ from datetime import datetime
 import enum
 
 class GenderEnum(str, enum.Enum):
-    MALE = "M"
-    FEMALE = "F"
+    MALE = "Male"
+    FEMALE = "Female"
     NON_BINARY = "Non-Binary"
 
 class User(Base):

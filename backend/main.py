@@ -1,15 +1,15 @@
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
-from database import get_db
-from models import User
-from datetime import date
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from auth import router as auth_router
 
 app = FastAPI()
 
-# Cors rules
-origins = ["*"]  # Allow all origins
-
+# CORS setup
+origins = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:5173",
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -18,32 +18,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# User registration endpoint wip
-# More data validation will be needed
-# Use Swagger UI at http://127.0.0.1:8000/docs to test endpoint
-
-@app.post("/users/")
-def create_user(
-    first_name: str, 
-    last_name: str, 
-    username: str, 
-    email: str, 
-    password: str, 
-    date_of_birth: date, 
-    gender: str, 
-    db: Session = Depends(get_db)
-):
-    user = User(
-        first_name=first_name, 
-        last_name=last_name, 
-        username=username, 
-        email=email, 
-        password=password, 
-        date_of_birth=date_of_birth, 
-        gender=gender
-    )
-    user.set_password(password)
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-    return {"id": user.id, "first_name": user.first_name, "username": user.username, "email": user.email}
+# Mount the auth routes
+app.include_router(auth_router)

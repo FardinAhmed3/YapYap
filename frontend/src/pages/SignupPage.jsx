@@ -1,9 +1,11 @@
-import { useState } from "react"
-import axios from "axios"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Navbar from "../components/Navbar"
 import SignUpForm from "../components/SignUpForm"
 
 const SignupPage = () => {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
@@ -11,27 +13,43 @@ const SignupPage = () => {
   const [password, setPassword] = useState("")
   const [dob, setDob] = useState("")
   const [gender, setGender] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const validateForm = () => {
+    if (!firstName || !lastName || !username || !email || !password || !dob || !gender) {
+      setError('All fields are required')
+      return false
+    }
+    setError('')
+    return true
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const userData = {
+    if (!validateForm()) return
+    setLoading(true)
+    const payload = {
       first_name: firstName,
       last_name: lastName,
       username,
       email,
       password,
       date_of_birth: dob,
-      gender,
+      gender
     }
-
     try {
-      const { data } = await axios.post("http://127.0.0.1:8000/users/", null, { params: userData })
-      alert(`Signed up successfully! User ID: ${data.username}`)
-    } catch (error) {
-      console.error("Error:", error)
-      alert("Signup failed: " + (error.message))
+      const response = await axios.post('http://localhost:8000/register', payload, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      setLoading(false)
+      navigate('/')
+    } catch (err) {
+      setLoading(false)
+      setError(err.response?.data?.detail || 'An error occurred. Please try again.')
+      console.error(err)
     }
+    
   }
 
   return (
@@ -55,6 +73,8 @@ const SignupPage = () => {
             setDob={setDob}
             gender={gender}
             setGender={setGender}
+            error={error}
+            loading={loading}
           />
         </div>
       </div>

@@ -5,15 +5,12 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone, date
 from passlib.context import CryptContext
 from pydantic import BaseModel
-from backend.mysql.models import User, GenderEnum
-from backend.mysql.database import SessionLocal
+from backend.mysql.sql_models import User, GenderEnum
+from backend.mysql.mysql_database import SessionLocal
 import os
 from dotenv import load_dotenv
-from pathlib import Path
 
-# Load .env from backend/ root
-env_path = Path(__file__).resolve().parents[1] / ".env"
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.auth import router as auth_router
-
+from backend.routes.auth import router as auth_router
+from backend.mongodb.mongo_database import MongoClient
 app = FastAPI()
 
 # CORS setup
@@ -10,6 +10,7 @@ origins = [
     "http://localhost:8000",
     "http://localhost:5173",
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -20,3 +21,4 @@ app.add_middleware(
 
 # Mount the auth routes
 app.include_router(auth_router)
+

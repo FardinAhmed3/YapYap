@@ -16,7 +16,7 @@ register_socketio_handlers(sio)
 fastapi_app = FastAPI()
 
 origins = [
-    "https://yapyap.fardinahmed.com/",
+    "https://yapyap.fardinahmed.com",
 ]
 
 fastapi_app.add_middleware(

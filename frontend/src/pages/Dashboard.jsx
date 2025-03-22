@@ -73,6 +73,13 @@ export const Dashboard = () => {
                 >
                     User Profile
                 </button>
+                <button
+                    onClick={() => navigate("/chat")}
+                    className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
+                >
+                    Chat
+                </button>
+
 
                 <AnimatePresence>
                     {showProfile && (

@@ -23,7 +23,7 @@ const LoginForm = () => {
         formDetails.append("password", password)
 
         try {
-            const response = await axios.post("http://localhost:8000/token", formDetails, {
+            const response = await axios.post("https://api.fardinahmed.com/token", formDetails, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },

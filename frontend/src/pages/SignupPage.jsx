@@ -39,7 +39,7 @@ const SignupPage = () => {
       gender
     }
     try {
-      const response = await axios.post('http://localhost:8000/register', payload, {
+      const response = await axios.post('https://api.fardinahmed.com/register', payload, {
         headers: { 'Content-Type': 'application/json' }
       })
       setLoading(false)

@@ -16,7 +16,7 @@ export default function Chat() {
   const fetchMessageHistory = async (chatId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:8000/messages/${chatId}`, {
+      const res = await axios.get(`https://api.fardinahmed.com/messages/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const normalized = res.data.map((msg) => ({
@@ -39,12 +39,12 @@ export default function Chat() {
     }
     const init = async () => {
       try {
-        await axios.get(`http://localhost:8000/verify-token/${token}`);
-        const userRes = await axios.get(`http://localhost:8000/me`, {
+        await axios.get(`https://api.fardinahmed.com/verify-token/${token}`);
+        const userRes = await axios.get(`https://api.fardinahmed.com/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsername(userRes.data.username);
-        socket = io("http://localhost:8000", { auth: { token } });
+        socket = io("https://api.fardinahmed.com", { auth: { token } });
         socket.on("connect", () => setConnected(true));
         socket.on("disconnect", () => setConnected(false));
         socket.on("connect_error", (err) => {

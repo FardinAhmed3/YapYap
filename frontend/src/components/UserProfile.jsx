@@ -15,7 +15,7 @@ const UserProfile = () => {
                     setLoading(false)
                     return
                 }
-                const response = await axios.get('http://localhost:8000/me', {
+                const response = await axios.get('https://api.fardinahmed.com/me', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

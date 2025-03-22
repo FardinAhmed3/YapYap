@@ -18,8 +18,8 @@ export const Dashboard = () => {
             }
 
             try {
-                await axios.get(`http://localhost:8000/verify-token/${token}`);
-                const meResponse = await axios.get('http://localhost:8000/me', {
+                await axios.get(`https://api.fardinahmed.com/verify-token/${token}`);
+                const meResponse = await axios.get('https://api.fardinahmed.com/me', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUsername(meResponse.data.username);

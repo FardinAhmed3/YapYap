@@ -16,10 +16,7 @@ register_socketio_handlers(sio)
 fastapi_app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:5173",
-    "*",
+    "https://yapyap.fardinahmed.com/",
 ]
 
 fastapi_app.add_middleware(

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import duckLogo from '../assets/YapYapLogo_notext.png'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)

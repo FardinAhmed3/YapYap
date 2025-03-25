@@ -20,7 +20,7 @@ const HomePage = () => {
     }
 
     return (
-    <>
+    <div>
         {/* Navigation Bar */}
         <div>
             <Navbar />
@@ -61,7 +61,7 @@ const HomePage = () => {
             </div>
         </div>
 
-    </>
+    </div>
   )
 }
 

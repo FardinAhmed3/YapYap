@@ -1,10 +1,11 @@
-import { useState } from "react"
-import axios from "axios"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Navbar from "../components/Navbar"
 import SignUpForm from "../components/SignUpForm"
-import '../App.css'
 
 const SignupPage = () => {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
@@ -12,53 +13,73 @@ const SignupPage = () => {
   const [password, setPassword] = useState("")
   const [dob, setDob] = useState("")
   const [gender, setGender] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        alert(`Signed up with: ${firstName}, ${lastName}, ${username}, ${email}, ${password}, ${dob}, ${gender}`)
+  const validateForm = () => {
+    if (!firstName || !lastName || !username || !email || !password || !dob || !gender) {
+      setError('All fields are required')
+      return false
     }
+    setError('')
+    return true
+  }
 
-    return(
-        <div>
-            <Navbar />
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!validateForm()) return
+    setLoading(true)
+    const payload = {
+      first_name: firstName,
+      last_name: lastName,
+      username,
+      email,
+      password,
+      date_of_birth: dob,
+      gender
+    }
+    try {
+      const response = await axios.post('http://localhost:8000/register', payload, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      setLoading(false)
+      navigate('/')
+    } catch (err) {
+      setLoading(false)
+      setError(err.response?.data?.detail || 'An error occurred. Please try again.')
+      console.error(err)
+    }
+    
+  }
 
-            <div className="container mx-auto my-auto">
-                <div className="flex flex-col items-center justify-center h-screen">
-                    <img 
-                        src="/YapYapLogo.svg" 
-                        alt="Duck Logo" 
-                        className="h-60 w-60 float-animation"
-                        // style={{ animation: 'floatUpDown 2s ease-in-out infinite' }}
-                    />
-                    <img 
-                        src="/YapYapLogo.svg" 
-                        alt="Duck Logo" 
-                        className="h-15 w-15 -mb-4 -translate-x-20 -translate-y-15 float-animation-delayed"
-                        // style={{ animation: 'floatUpDown 2s ease-in-out infinite'}}
-                    />
-
-                    <SignUpForm
-                        onSubmit={handleSubmit}
-                        firstName={firstName}
-                        setFirstName={setFirstName}
-                        lastName={lastName}
-                        setLastName={setLastName}
-                        username={username}
-                        setUsername={setUsername}
-                        email={email}
-                        setEmail={setEmail}
-                        password={password}
-                        setPassword={setPassword}
-                        dob={dob}
-                        setDob={setDob}
-                        gender={gender}
-                        setGender={setGender}
-                    />
-                </div>
-
-            </div>
+  return (
+    <>
+      <Navbar />
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col items-center justify-center h-screen">
+          <SignUpForm
+            onSubmit={handleSubmit}
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            username={username}
+            setUsername={setUsername}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            dob={dob}
+            setDob={setDob}
+            gender={gender}
+            setGender={setGender}
+            error={error}
+            loading={loading}
+          />
         </div>
-    )
+      </div>
+    </>
+  )
 }
 
 export default SignupPage

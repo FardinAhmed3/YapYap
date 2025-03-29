@@ -10,12 +10,12 @@ const Navbar = () => {
     }
 
     return(
-        <nav className="bg-amber-400 px-10 py-2">
+        <nav className="bg-amber-400 px-5 py-2">
             <div className="w-full mx-auto flex items-center justify-between">
                 
                 {/* LOGO */}
                 <div className="flex">
-                    <img src="/YapYapLogo.svg" alt="duck logo" className="h-12 w-12 mr-2"></img>
+                    <Link to='/dashboard'><img src="/YapYapLogo.svg" alt="duck logo" className="h-12 w-32 bg-amber-400 hover:shadow-lg  hover:bg-amber-500 transition-transform transform duration-300 rounded-3xl"></img></Link>
                 </div>
                 
                 {/* NAME */}

@@ -83,6 +83,20 @@ export default function Chat() {
     setMessage("");
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const handleRecipientKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleRecipientSelect();
+    }
+  };
+
   return (
     <div className="bg-amber-400 h-screen w-full flex items-center justify-center">
       <div className="flex w-[95%] h-[95%] rounded-xl shadow-lg overflow-hidden">
@@ -93,6 +107,7 @@ export default function Chat() {
             type="text"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
+            onKeyPress={handleRecipientKeyPress}
             placeholder="Enter recipient username"
             className="w-full p-2 rounded border border-gray-500 focus:outline-none focus:ring-amber-400"
           />
@@ -140,9 +155,10 @@ export default function Chat() {
           <div className="p-4 flex gap-2">
             <input
               type="text"
-              placeholder="Type your message..."
+              placeholder="Type your message...🚀"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
               className="flex-grow p-2 rounded border border-gray-500 focus:outline-none focus:ring-amber-400"
             />
             <button
@@ -154,21 +170,23 @@ export default function Chat() {
           </div>
         </main>
       </div>
-      <style jsx>{`
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
+      <style>
+        {`
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 }

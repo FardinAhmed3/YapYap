@@ -5,17 +5,15 @@ import Footer from '../components/Footer';
 
 const SupportPage = () => {
     return (
-        <>
-            <div>
-                <Navbar />
-            </div>
+        <div className="flex flex-col min-h-screen bg-amber-600">
+            <Navbar />
 
-            <div className="h-64 w-full flex flex-col justify-center items-center m-0 p-20">
+            <div className="h-64 w-full flex flex-col justify-center items-center m-0 p-20 bg-white">
                 <h1 className="text-3xl font-bold text-amber-300 mb-4">Yap Center</h1>
-                <input className="p-2 border-2 w-200 border-amber-300 rounded-md" placeholder="Search" />
+                <input className="p-2 border-2 w-100 border-amber-300 rounded-md" placeholder="Search" />
             </div>
 
-            <div className="h-125 w-full bg-amber-400 m-0 p-20">
+            <div className="bg-amber-400 m-0 p-20">
                 <h1 className="text-3xl font-bold text-white mb-4 flex flex-col justify-center items-center">Need Help? We've got you covered.</h1>
                 <div className='flex flex-wrap justify-center gap-10 m-10'>
                     <SupportBox page="/updates" title="Latest Updates" desc="Check out what's new on YapYap!"/>
@@ -24,9 +22,11 @@ const SupportPage = () => {
                     <SupportBox page="/feedback" title="Feedback" desc="Share your thoughts with us."/>
                 </div>
             </div>
-            <Footer/>
-        </>
+
+            <Footer />
+        </div>
     );
 };
+
 
 export default SupportPage;

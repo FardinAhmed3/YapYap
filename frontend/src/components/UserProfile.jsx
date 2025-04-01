@@ -6,6 +6,8 @@ const UserProfile = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -15,7 +17,7 @@ const UserProfile = () => {
                     setLoading(false)
                     return
                 }
-                const response = await axios.get('http://localhost:8000/me', {
+                const response = await axios.get(`${API_BASE_URL}/me`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

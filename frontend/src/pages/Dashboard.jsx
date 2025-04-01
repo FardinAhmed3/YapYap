@@ -9,6 +9,8 @@ export const Dashboard = () => {
     const [showProfile, setShowProfile] = useState(false);
     const navigate = useNavigate();
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     useEffect(() => {
         const verifyTokenAndFetchUser = async () => {
             const token = localStorage.getItem('token');
@@ -18,8 +20,8 @@ export const Dashboard = () => {
             }
 
             try {
-                await axios.get(`http://localhost:8000/verify-token/${token}`);
-                const meResponse = await axios.get('http://localhost:8000/me', {
+                await axios.get(`${API_BASE_URL}/verify-token/${token}`);
+                const meResponse = await axios.get(`${API_BASE_URL}/me`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUsername(meResponse.data.username);
@@ -73,6 +75,13 @@ export const Dashboard = () => {
                 >
                     User Profile
                 </button>
+                <button
+                    onClick={() => navigate("/chat")}
+                    className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
+                >
+                    Chat
+                </button>
+
 
                 <AnimatePresence>
                     {showProfile && (

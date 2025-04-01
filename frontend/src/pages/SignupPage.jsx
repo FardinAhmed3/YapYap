@@ -16,6 +16,8 @@ const SignupPage = () => {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
   const validateForm = () => {
     if (!firstName || !lastName || !username || !email || !password || !dob || !gender) {
       setError('All fields are required')
@@ -39,7 +41,7 @@ const SignupPage = () => {
       gender
     }
     try {
-      const response = await axios.post('http://localhost:8000/register', payload, {
+      const response = await axios.post(`${API_BASE_URL}/register`, payload, {
         headers: { 'Content-Type': 'application/json' }
       })
       setLoading(false)

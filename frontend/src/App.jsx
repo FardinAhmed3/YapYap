@@ -5,6 +5,8 @@ import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
 import SupportPage from './pages/SupportPage';
 import AboutPage from './pages/AboutPage';
+import Chat from './pages/Chat';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/support' element={<SupportPage/>} />
         <Route path='/about' element={<AboutPage/>} />
+        <Route path='/chat' element={<Chat/>}/>
       </Routes>
     </Router>
   )

@@ -5,8 +5,8 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone, date
 from passlib.context import CryptContext
 from pydantic import BaseModel
-from backend.mysql.sql_models import User, GenderEnum
-from backend.mysql.mysql_database import SessionLocal
+from mysql.sql_models import User, GenderEnum
+from mysql.mysql_database import SessionLocal
 import os
 from dotenv import load_dotenv
 

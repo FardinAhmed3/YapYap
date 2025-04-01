@@ -15,6 +15,8 @@ const HomePage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     useEffect(() => {
         const verifyTokenAndFetchUser = async () => {
             const token = localStorage.getItem('token')
@@ -23,8 +25,8 @@ const HomePage = () => {
             }
 
             try {
-                await axios.get(`http://localhost:8000/verify-token/${token}`)
-                await axios.get('http://localhost:8000/me', {
+                await axios.get(`${API_BASE_URL}/verify-token/${token}`)
+                await axios.get(`${API_BASE_URL}/me`, {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 navigate('/dashboard')

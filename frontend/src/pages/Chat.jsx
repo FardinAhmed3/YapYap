@@ -13,10 +13,12 @@ export default function Chat() {
   const [error, setError] = useState("");
   const messagesEndRef = useRef(null);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
   const fetchMessageHistory = async (chatId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:8000/messages/${chatId}`, {
+      const res = await axios.get(`${API_BASE_URL}/messages/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const normalized = res.data.map((msg) => ({
@@ -39,12 +41,12 @@ export default function Chat() {
     }
     const init = async () => {
       try {
-        await axios.get(`http://localhost:8000/verify-token/${token}`);
-        const userRes = await axios.get(`http://localhost:8000/me`, {
+        await axios.get(`${API_BASE_URL}/verify-token/${token}`);
+        const userRes = await axios.get(`${API_BASE_URL}/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsername(userRes.data.username);
-        socket = io("http://localhost:8000", { auth: { token } });
+        socket = io(`${API_BASE_URL}`, { auth: { token } });
         socket.on("connect", () => setConnected(true));
         socket.on("disconnect", () => setConnected(false));
         socket.on("connect_error", (err) => {

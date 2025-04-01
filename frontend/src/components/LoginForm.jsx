@@ -55,7 +55,7 @@ const LoginForm = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="
-                    w-full border border-gray-300 rounded-md px-3 py-2 mb-4 
+                    w-full border border-gray-300 rounded-2xl px-3 py-2 mb-4 
                     focus:outline-none focus:ring-2 focus:ring-amber-400
                 "
             />
@@ -66,7 +66,7 @@ const LoginForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="
-                    w-full border border-gray-300 rounded-md px-3 py-2 mb-4 
+                    w-full border border-gray-300 rounded-2xl px-3 py-2 mb-4 
                     focus:outline-none focus:ring-2 focus:ring-amber-400
                 "
             />
@@ -76,7 +76,7 @@ const LoginForm = () => {
             <button 
                 type="submit"
                 className="
-                    w-full bg-amber-400 text-white py-2 rounded-md 
+                    w-full bg-amber-400 text-white py-2 rounded-2xl
                     hover:bg-amber-500 transition duration-300
                 "
                 disabled={loading}

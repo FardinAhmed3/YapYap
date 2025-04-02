@@ -9,6 +9,8 @@ const LoginForm = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!username || !password) {
@@ -23,7 +25,7 @@ const LoginForm = () => {
         formDetails.append("password", password)
 
         try {
-            const response = await axios.post("http://localhost:8000/token", formDetails, {
+            const response = await axios.post(`${API_BASE_URL}/token`, formDetails, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },

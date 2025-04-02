@@ -15,11 +15,12 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
-  // Fetch message history from the backend for a given chatId
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
   const fetchMessageHistory = async (chatId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:8000/messages/${chatId}`, {
+      const res = await axios.get(`${API_BASE_URL}/messages/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const normalized = res.data.map((msg) => ({
@@ -54,6 +55,7 @@ export default function Chat() {
 
         // Connect socket
         socket = io("http://localhost:8000", { auth: { token } });
+
         socket.on("connect", () => setConnected(true));
         socket.on("disconnect", () => setConnected(false));
         socket.on("connect_error", (err) => {
@@ -97,6 +99,20 @@ export default function Chat() {
     setMessage("");
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const handleRecipientKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleRecipientSelect();
+    }
+  };
+
   return (
     <div className="h-screen w-screen flex flex-col">
       {/* Top header with logo */}
@@ -123,6 +139,7 @@ export default function Chat() {
               Load Conversation
             </button>
           </div>
+
           <div className="text-center text-sm text-gray-700">
             Logged in as{" "}
             <span className="font-semibold text-amber-600">
@@ -163,10 +180,13 @@ export default function Chat() {
           <div className="p-4 flex items-center gap-2">
             <input
               type="text"
-              placeholder="Type your message..."
+              placeholder="Type your message."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+
               className="flex-grow p-2 rounded-2xl border-2 border-gray-200 focus:outline-none focus:border-amber-300 focus:ring-1 focus:ring-amber-300"
+              // onKeyPress={handleKeyPress}
+            
             />
             <button onClick={handleSend} className="p-2 rounded-full hover:bg-amber-100">
               <FiSend
@@ -187,13 +207,14 @@ export default function Chat() {
           from {
             opacity: 0;
             transform: translateY(10px);
+         }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 }

@@ -9,9 +9,6 @@ import os
 
 load_dotenv()
 
-MONGODB_USER = os.getenv("MONGODB_USER")
-MONGODB_PASSWORD = os.getenv("MONGODB_PASSWORD")
-
 uri = os.getenv("MONGODB_URI")
 
 client = MongoClient(uri, server_api=ServerApi("1"))

@@ -9,6 +9,8 @@ const LoginForm = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!username || !password) {
@@ -23,7 +25,7 @@ const LoginForm = () => {
         formDetails.append("password", password)
 
         try {
-            const response = await axios.post("http://localhost:8000/token", formDetails, {
+            const response = await axios.post(`${API_BASE_URL}/token`, formDetails, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
@@ -55,7 +57,7 @@ const LoginForm = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="
-                    w-full border border-gray-300 rounded-md px-3 py-2 mb-4 
+                    w-full border border-gray-300 rounded-2xl px-3 py-2 mb-4 
                     focus:outline-none focus:ring-2 focus:ring-amber-400
                 "
             />
@@ -66,7 +68,7 @@ const LoginForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="
-                    w-full border border-gray-300 rounded-md px-3 py-2 mb-4 
+                    w-full border border-gray-300 rounded-2xl px-3 py-2 mb-4 
                     focus:outline-none focus:ring-2 focus:ring-amber-400
                 "
             />
@@ -76,7 +78,7 @@ const LoginForm = () => {
             <button 
                 type="submit"
                 className="
-                    w-full bg-amber-400 text-white py-2 rounded-md 
+                    w-full bg-amber-400 text-white py-2 rounded-2xl
                     hover:bg-amber-500 transition duration-300
                 "
                 disabled={loading}

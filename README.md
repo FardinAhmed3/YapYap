@@ -26,3 +26,48 @@ We’re building a **real-time chat application** designed for **seamless messag
 ### 🗄️ **Database & Caching**  
 **:small_blue_diamond: SQL & NoSQL Databases** – **MySQL & MongoDB** :floppy_disk:  
 **:small_blue_diamond: Redis** (Caching for reliability & high availability) 🏎️
+
+
+# Installation
+
+## FastAPI Setup
+```
+cd backend
+python3 -m venv .venv 
+source .venv/bin/activate  
+pip install -r requirements.txt
+```
+### Create `.env` file in `backend/`
+- Replace placeholder values with your actual credentials and secret keys
+```
+# --- MySQL Configuration ---
+DB_USER =
+DB_PASSWORD =
+DB_HOST =
+DB_PORT =
+DB_NAME =
+
+# --- MongoDB Configuration ---
+MONGODB_URI = mongodb+srv://
+
+# --- RabbitMQ Configuration ---
+RABBITMQ_URL = amqp://
+
+# --- JWT Secret ---
+JWT_SECRET_KEY= your_super_secret_key
+```
+- Run the backend server from backend/ using `uvicorn main:app --reload`
+
+## Frontend Setup
+Install [Node](https://nodejs.org/en/download)
+```
+cd frontend
+npm install
+```
+### Create `.env` file in `frontend/`
+- Put `VITE_API_BASE_URL=http://localhost:8000` in `.env`
+- Start the frontend from frontend/ using `npm run dev`
+## Development Servers
+- Frontend: `http://localhost:5137`
+- Backend: `http://localhost:8000/docs`
+
